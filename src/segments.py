@@ -8,6 +8,9 @@ class Segment() :
     def __repr__(self) :
         return str(self)
 
+    def __contains__(self, value) :
+        return self.isin(value)
+
     def isin(self, coord) :
         return self.start <= coord <= self.stop 
 
@@ -112,6 +115,9 @@ class SegList() :
 
         else :
             raise ValueError("Only segment or SegList can be used")
+
+    def __contains__(self, value) :
+        return any(value in segment for segment in self)
 
     def _create_from_list(self, seglist) :
         seglist = sorted(seglist, key = lambda x : x.start)
