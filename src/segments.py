@@ -11,6 +11,9 @@ class Segment() :
     def __contains__(self, value) :
         return self.isin(value)
 
+    def __len__(self) :
+        return self.stop - self.start
+
     def isin(self, coord) :
         return self.start <= coord <= self.stop 
 
@@ -118,6 +121,9 @@ class SegList() :
 
     def __contains__(self, value) :
         return any(value in segment for segment in self)
+
+    def cum_size(self) :
+        return sum(len(segment) for segment in self)
 
     def _create_from_list(self, seglist) :
         seglist = sorted(seglist, key = lambda x : x.start)
