@@ -23,6 +23,19 @@ class Segment() :
     def overlapp(self, segment) :
         return self.segin(segment) or segment.segin(self)
 
+    def overlapp_count(self, other, prc=False) :
+        if isinstance(other, Segment) :
+            size = len(self) - sum(len(subseg) for subseg in self - other)
+
+        elif isinstance(other, SegList) :
+            size = other.overlapp_count(self, prc=False)
+
+        else :
+            raise ValueError("Can only calculate overlapp against Segment or SegList objects")
+
+        if prc : size = size * 100 / len(self)
+        return size
+
     def __add__(self, other) :
         
         if isinstance(other, SegList) :
@@ -192,6 +205,17 @@ class SegList() :
 
             if not found : idx += 1                    
             yield idx, other_segment, segments
+
+    def overlapp_count(self, other, prc=False) :
+
+        if isinstance(other, Segment) or isinstance(other, SegList) :
+            size = self.cum_size() - sum(len(subseg) for subseg in self - other)
+
+        else :
+            raise ValueError("Can only calculate overlapp against Segment or SegList objects")
+
+        if prc : size = size * 100 / self.cum_size()
+        return size
 
     def extend(self, seglist) :
        
