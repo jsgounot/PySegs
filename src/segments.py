@@ -148,6 +148,14 @@ class SegList() :
     def __contains__(self, value) :
         return any(value in segment for segment in self)
 
+    def min_coor(self, default=None) :
+        if not self._segments : return default
+        return min(segment.start for segment in self._segments)
+
+    def max_coor(self, default=None) :
+        if not self._segments : return default
+        return max(segment.stop for segment in self._segments)        
+
     def cum_size(self) :
         return sum(len(segment) for segment in self)
 
