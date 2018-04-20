@@ -10,7 +10,7 @@ class Segment() :
         return str(self)
 
     def __contains__(self, value) :
-        return self.isin(value)
+        return self.overlapp(other) if isinstance(other, Segment) else self.isin(other)
 
     def __hash__(self) :
         return hash((self.start, self.stop))
