@@ -1,4 +1,5 @@
 class Segment() :
+    
     def __init__(self, start, stop) :
         self.start, self.stop = sorted((start, stop))
 
@@ -10,6 +11,12 @@ class Segment() :
 
     def __contains__(self, value) :
         return self.isin(value)
+
+    def __hash__(self) :
+        return hash((self.start, self.stop))
+
+    def __eq__(self, other) :
+        return hash(self) == hash(other) if isinstance(other, Segment) else False
 
     def __len__(self) :
         return self.stop - self.start
@@ -94,6 +101,12 @@ class SegList() :
 
     def __bool__(self) :
         return bool(self._segments)
+
+    def __hash__(self) :
+        return hash(tuple((seg.start, seg.stop) for seg in self))
+
+    def __eq__(self, other) :
+        return hash(self) == hash(other) if isinstance(other, SegList) else False
 
     def __iter__(self) :
         yield from self._segments
