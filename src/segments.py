@@ -40,6 +40,7 @@ class Segment() :
         else :
             raise ValueError("Can only calculate overlapp against Segment or SegList objects")
 
+        size = size if size >= 0 else 0
         if prc : size = size * 100 / len(self)
         return size
 
