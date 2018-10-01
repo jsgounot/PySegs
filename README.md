@@ -7,7 +7,7 @@ Quick example
 -------------
 
 ```python
-from segments import Segment, SegList
+from pysegs import Segment, SegList
 
 Segment(40, 60) + Segment(50, 70) # -> SegList([Segment(40 - 70)])
 Segment(40, 60) - Segment(50, 70) # -> SegList([Segment(40 - 50)])
