@@ -3,6 +3,15 @@ PySegments
 
 PySegments is a short module designed to make windows analysis easier. This module is composed of two objects : `Segment` and `SegList` allowing you to easily compare and manage several windows at the same time. 
 
+Installation
+------------
+
+Using pip 
+
+```
+pip install git+https://github.com/jsgounot/PySegs.git
+```
+
 Quick example 
 -------------
 
